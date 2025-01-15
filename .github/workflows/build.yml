@@ -1,4 +1,4 @@
-name: Build and Push Pixlet App
+name: Build and Push Layoffs
 
 on:
   push:
@@ -24,8 +24,8 @@ jobs:
 
     - name: Build and Run Pixlet
       run: |
-        docker build -t pixlet-app .
+        docker build -t layoffs .
         docker run --rm \
           -e TIDBYT_API_TOKEN=${{ secrets.TIDBYT_API_TOKEN }} \
           -e TIDBYT_DEVICE_ID=${{ secrets.TIDBYT_DEVICE_ID }} \
-          pixlet-app
+          layoffs
