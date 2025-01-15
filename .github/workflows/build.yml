@@ -20,12 +20,9 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.GHCR_PAT }}
 
-    - name: Build and Run Pixlet
+    - name: Build and Push Docker Image
       run: |
-        docker build -t layoffs .
-        docker run --rm \
-          -e TIDBYT_API_TOKEN=${{ secrets.TIDBYT_API_TOKEN }} \
-          -e TIDBYT_DEVICE_ID=${{ secrets.TIDBYT_DEVICE_ID }} \
-          layoffs
+        docker build -t ghcr.io/gotascii/layoffs:latest .
+        docker push ghcr.io/gotascii/layoffs:latest
