@@ -22,7 +22,11 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}
 
-    - name: Build and Push Docker Image
-      run: |
-        docker build -t ghcr.io/gotascii/layoffs:latest .
-        docker push ghcr.io/gotascii/layoffs:latest
+    - name: Build and Push Docker Image for ARM64 (Raspberry Pi)
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        platforms: linux/arm64
+        tags: ghcr.io/gotascii/layoffs:latest
+
