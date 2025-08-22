@@ -20,7 +20,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GHCR_PAT }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and Push Docker Image for ARM64 (Raspberry Pi)
       uses: docker/build-push-action@v4
