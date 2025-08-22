@@ -38,3 +38,4 @@ COPY layoffs.star .
 
 CMD ["sh", "-c", "pixlet render /app/layoffs.star && pixlet push $TIDBYT_DEVICE_ID /app/layoffs.webp --api-token $TIDBYT_API_TOKEN"]
 
+
