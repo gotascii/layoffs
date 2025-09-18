@@ -11,7 +11,7 @@ COUNT_RGB = "#f00"
 TITLE = "LAYOFFS.FYI"
 COMPANY_LABEL = "Companies"
 EMPLOYEE_LABEL = "Nerds"
-CSS_ID = "#numbers2024"
+CSS_ID = "#numbers2025"
 CSS_CLASS = ".big-number"
 
 def main():
@@ -28,38 +28,53 @@ def main():
     sel = sel.find(CSS_ID)
     sel = sel.find(CSS_CLASS)
 
-    company_count = sel.eq(0).text()
-    employee_count = sel.eq(1).text()
+    employee_count = sel.eq(0).text()
+    company_count = sel.eq(1).text()
 
     return render.Root(
-        child = render.Box(
-            color = BG_RGB,
-            child = render.Column(
-                expanded = True,
-                main_align = "space_evenly",
-                children = [
-                    render.Row(
-                        children = [
-                            render.Text(content = TITLE, font = FONT, color = TITLE_RGB),
-                        ],
-                    ),
-                    render.Row(
-                        main_align = "space_between",
-                        children = [
-                            render.Text(content = COMPANY_LABEL, font = FONT, color = LABEL_RGB),
-                            render.Box(width = 10, height = 5, color = BG_RGB),
-                            render.Text(content = "%s" % company_count, font = FONT, color = COUNT_RGB),
-                        ],
-                    ),
-                    render.Row(
-                        main_align = "space_between",
-                        children = [
-                            render.Text(content = EMPLOYEE_LABEL, font = FONT, color = LABEL_RGB),
-                            render.Box(width = 19, height = 5, color = BG_RGB),
-                            render.Text(content = "%s" % employee_count, font = FONT, color = COUNT_RGB),
-                        ],
-                    ),
-                ],
-            ),
+        child = render.Column(
+            children = [
+                render.Row(
+                    children = [
+                        render.Box(
+                            child = render.Text(content = TITLE, font = FONT, color = TITLE_RGB, offset = -1),
+                            height = 7,
+                            width = 47,
+                        ),
+                    ],
+                ),
+                render.Row(
+                    children = [
+                        render.Box(
+                            # color = "#a33",
+                            child = render.Text(content = COMPANY_LABEL, font = FONT, color = LABEL_RGB, offset = 0),
+                            height = 8,
+                            width = 39,
+                        ),
+                        render.Box(
+                            # color = "#a99",
+                            child = render.Text(content = "%s" % company_count, font = FONT, color = COUNT_RGB, offset = -1),
+                            height = 7,
+                            width = 25,
+                        ),
+                    ],
+                ),
+                render.Row(
+                    children = [
+                        render.Box(
+                            # color = "#a33",
+                            child = render.Text(content = EMPLOYEE_LABEL, font = FONT, color = LABEL_RGB, offset = -1),
+                            height = 7,
+                            width = 23,
+                        ),
+                        render.Box(
+                            # color = "#a99",
+                            child = render.Text(content = "%s" % employee_count, font = FONT, color = COUNT_RGB, offset = -1),
+                            height = 7,
+                            width = 41,
+                        ),
+                    ],
+                ),
+            ],
         ),
     )
