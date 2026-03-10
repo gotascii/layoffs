@@ -24,11 +24,16 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Set short SHA
+      run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
     - name: Build and Push Docker Image for ARM64 (Raspberry Pi)
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
         platforms: linux/arm64
-        tags: ghcr.io/gotascii/layoffs:latest
+        tags: |
+          ghcr.io/gotascii/layoffs:latest
+          ghcr.io/gotascii/layoffs:${{ env.SHORT_SHA }}
 
