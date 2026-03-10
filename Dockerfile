@@ -17,7 +17,7 @@ ENV GOPATH=/go
 ENV PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
 
 # Clone the Pixlet repository
-RUN git clone https://github.com/tidbyt/pixlet.git /pixlet
+RUN git clone --depth 1 --branch v0.34.0 https://github.com/tidbyt/pixlet.git /pixlet
 
 # Set the working directory
 WORKDIR /pixlet

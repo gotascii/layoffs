@@ -36,4 +36,6 @@ jobs:
         tags: |
           ghcr.io/gotascii/layoffs:latest
           ghcr.io/gotascii/layoffs:${{ env.SHORT_SHA }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
 
