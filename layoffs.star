@@ -1,8 +1,5 @@
 load("render.star", "render")
-load("http.star", "http")
-load("html.star", "html")
 
-URL = "https://layoffs.fyi"
 FONT = "tom-thumb"
 BG_RGB = "#111"
 TITLE_RGB = "#55f"
@@ -11,25 +8,10 @@ COUNT_RGB = "#f00"
 TITLE = "LAYOFFS.FYI"
 COMPANY_LABEL = "Companies"
 EMPLOYEE_LABEL = "Nerds"
-CSS_ID = "#numbers2025"
-CSS_CLASS = ".big-number"
 
-def main():
-    """
-    Prints layoffs.fyi totals
-
-    Returns:
-      Nothing
-    """
-
-    resp = http.get(URL)
-    body = resp.body()
-    sel = html(body)
-    sel = sel.find(CSS_ID)
-    sel = sel.find(CSS_CLASS)
-
-    employee_count = sel.eq(0).text()
-    company_count = sel.eq(1).text()
+def main(config):
+    employee_count = config.get("employee_count", "N/A")
+    company_count = config.get("company_count", "N/A")
 
     return render.Root(
         child = render.Column(

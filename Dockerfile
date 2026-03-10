@@ -35,7 +35,9 @@ RUN install -m 755 pixlet /usr/local/bin/pixlet
 WORKDIR /app
 
 COPY layoffs.star .
+COPY run.sh .
+RUN chmod +x run.sh
 
-CMD ["sh", "-c", "pixlet render /app/layoffs.star && pixlet push $TIDBYT_DEVICE_ID /app/layoffs.webp --api-token $TIDBYT_API_TOKEN"]
+CMD ["/app/run.sh"]
 
 
